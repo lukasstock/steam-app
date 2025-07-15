@@ -1,0 +1,94 @@
+/* Overall page background and font */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #f0f0f0;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container for content to center it nicely */
+.tag-container,
+h1 {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Style the heading */
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Tag styles remain same as before */
+.tag-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.tag {
+    background: #007bff;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    user-select: none;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.4);
+    transition: background-color 0.3s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+.tag:hover {
+    background: #0056b3;
+}
+
+/* Pulse animation */
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 123, 255, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
+.pulse {
+    animation: pulseAnimation 0.3s ease;
+}
+
+.back-button-wrapper {
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    display: inline-block;
+    background-color: #1b2838;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid #66c0f4;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #66c0f4;
+    color: #1b2838;
+}

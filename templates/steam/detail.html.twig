@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ player.personaname }}'s Steam Stats</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav style="margin-bottom: 20px; display: flex; gap: 10px;">
+    {% for name, steamId in friends %}
+        <a href="{{ path('steam_index') }}?id={{ steamId }}"
+           style="display: inline-block; border: 2px solid {% if steamId == selectedId %}#00b4d8{% else %}transparent{% endif %}; border-radius: 50%; padding: 2px;">
+            <img
+                src="{{ friendAvatars[steamId]|default('https://via.placeholder.com/50') }}"
+                alt="{{ name }}"
+                height="50"
+                style="border-radius: 50%; display: block;">
+        </a>
+    {% endfor %}
+</nav>
+
+<div class="compare-buttons">
+    <h3>Compare with a friend:</h3>
+    {% for name, steamId in friends %}
+        {% if steamId != selectedId %}
+            <a href="{{ path('steam_compare', { id1: selectedId, id2: steamId }) }}">
+                <img src="{{ friendAvatars[steamId] }}" alt="{{ name }}" width="64" height="64" title="Compare with {{ name }}">
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<h1>{{ player.personaname }}</h1>
+<img src="{{ player.avatarfull }}" alt="Avatar">
+<p>Status: {{ player.personastate == 1 ? 'Online' : 'Offline' }}</p>
+<p>Steam Profile: <a href="{{ player.profileurl }}" target="_blank">View</a></p>
+
+<div class="back-button-wrapper">
+    <a href="{{ path('steam_genre') }}" class="back-button">
+        ← Show this players favorite game genres!
+    </a>
+</div>
+
+{% if recentGames is not empty %}
+    <div style="margin: 10px 0; font-size: 1.2em;">
+        <strong>Total playtime (last 2 weeks):</strong> {{ totalPlaytime2Weeks }} hours
+    </div>
+{% endif %}
+<div style="margin: 10px 0; font-size: 1.2em;">
+    <strong>Total playtime (all time):</strong> {{ totalPlaytimeForever }} hours
+</div>
+
+<h2>Recently Played Games</h2>
+<ul>
+    {% for game in recentGames %}
+        <li>
+            <strong>{{ game.name }}</strong><br>
+            Playtime (last 2 weeks): {{ (game.playtime_2weeks / 60)|number_format(1) }} hours<br>
+            <img src="https://media.steampowered.com/steamcommunity/public/images/apps/{{ game.appid }}/{{ game.img_icon_url }}.jpg" alt="{{ game.name }}" height="100">
+        </li>
+    {% else %}
+        <li>Scheiß Reudo hat seine Spiele auf privat.</li>
+    {% endfor %}
+</ul>
+
+<button id="toggle-theme">Toggle Light/Dark</button>
+
+<script>
+    const btn = document.getElementById('toggle-theme');
+    btn.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/genre.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="back-button-wrapper">
+        <a href="{{ path('steam_index')}}" class="back-button">
+            ← Back to Details Page
+        </a>
+    </div>
+
+    <h1>{{ message }}</h1>
+
+    <div class="tag-container">
+        {% for tag in topTags %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/genre.js') }}"></script>
+{% endblock %}

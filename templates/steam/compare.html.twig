@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/compare.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/compare.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="back-button-wrapper">
+        <a href="{{ path('steam_index', { id: player1.steamid }) }}" class="back-button">
+            ← Back to {{ player1.personaname }}'s Detail Page
+        </a>
+    </div>
+
+    <h2>{{ player1.personaname }} vs {{ player2.personaname }}</h2>
+
+    <div class="compare-container">
+        <div class="player-card">
+            <img src="{{ player1.avatarfull }}" alt="{{ player1.personaname }}" width="100" height="100">
+            <h3>{{ player1.personaname }}</h3>
+            <p class="stat">Last 2 weeks: {{ playtime1 }} hrs</p>
+            <p class="stat">Total: {{ totalPlaytime1 }} hrs</p>
+        </div>
+
+        <div class="player-card">
+            <img src="{{ player2.avatarfull }}" alt="{{ player2.personaname }}" width="100" height="100">
+            <h3>{{ player2.personaname }}</h3>
+            <p class="stat">Last 2 weeks: {{ playtime2 }} hrs</p>
+            <p class="stat">Total: {{ totalPlaytime2 }} hrs</p>
+        </div>
+    </div>
+
+    <div class="compare-bar">
+        <div class="bar-label">2-Week Playtime Comparison</div>
+        {% set total2weeks = playtime1 + playtime2 %}
+        <div class="bar-wrapper">
+            <div class="bar" style="background-color:#a6e22e;" data-percent="{{ (playtime1 / total2weeks * 100)|round(1) }}"></div>
+            <span class="bar-value">{{ player1.personaname }} | {{ playtime1 }} hrs</span>
+        </div>
+        <div class="bar-wrapper">
+            <div class="bar" style="background-color:#f92672;" data-percent="{{ (playtime2 / total2weeks * 100)|round(1) }}"></div>
+            <span class="bar-value">{{ player2.personaname }} | {{ playtime2 }} hrs</span>
+        </div>
+
+        <div class="bar-label">Total Playtime Comparison</div>
+        {% set totalAll = totalPlaytime1 + totalPlaytime2 %}
+        <div class="bar-wrapper">
+            <div class="bar" style="background-color:#a6e22e;" data-percent="{{ (totalPlaytime1 / totalAll * 100)|round(1) }}"></div>
+            <span class="bar-value">{{ player1.personaname }} | {{ totalPlaytime1 }} hrs</span>
+        </div>
+        <div class="bar-wrapper">
+            <div class="bar" style="background-color:#f92672;" data-percent="{{ (totalPlaytime2 / totalAll * 100)|round(1) }}"></div>
+            <span class="bar-value">{{ player2.personaname }} | {{ totalPlaytime2 }} hrs</span>
+        </div>
+    </div>
+{% endblock %}

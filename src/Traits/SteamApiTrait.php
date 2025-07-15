@@ -119,5 +119,4 @@ trait SteamApiTrait
 
         return $data['response']['games'] ?? [];
     }
-
 }

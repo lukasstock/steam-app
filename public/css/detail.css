@@ -94,24 +94,3 @@ body.light h1, body.light h2 {
     background-color: #66c0f4;
     color: #1b2838;
 }
-
-.back-button-wrapper {
-    margin-bottom: 2rem;
-}
-
-.back-button {
-    display: inline-block;
-    background-color: #1b2838;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    border: 1px solid #66c0f4;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.back-button:hover {
-    background-color: #66c0f4;
-    color: #1b2838;
-}

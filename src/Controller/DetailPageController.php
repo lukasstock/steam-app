@@ -20,12 +20,15 @@ class DetailPageController extends AbstractController
         'Beezy' => '76561198157299521',
         'Reudo' => '76561198016847931',
         'Vanessa' => '76561199484311865',
-        'Khalil' => '76561198136356576'
+        'Khalil' => '76561198136356576',
+        'Joi' => '76561198254423268'
     ];
 
     #[Route('/steam', name: 'steam_index')]
     public function index(Request $request): Response
     {
+        //TODO average playtime pro spiel
+        //TODO average cock size - live cock hardness tracker
         $apiKey = $_ENV['STEAM_API_KEY'];
         $selectedId = $request->query->get('id', $_ENV['STEAM_ID']);
 

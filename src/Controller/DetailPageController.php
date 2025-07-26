@@ -24,6 +24,7 @@ class DetailPageController extends AbstractController
         'Joi' => '76561198254423268'
     ];
 
+    #[Route('/', name: 'homepage')]
     #[Route('/steam', name: 'steam_index')]
     public function index(Request $request): Response
     {

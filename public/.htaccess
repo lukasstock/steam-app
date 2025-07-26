@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+
+    # Redirect to URI without front controller (index.php)
+    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(index\.php)(.*)::\2$
+    RewriteRule ^ %1%3 [R=301,L]
+
+    # If the requested filename exists, skip rewriting
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # Otherwise rewrite all to index.php
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>

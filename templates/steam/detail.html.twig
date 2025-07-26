@@ -5,9 +5,11 @@
     <title>{{ player.personaname }}'s Steam Stats</title>
     <link rel="stylesheet" href="/css/detail.css">
 </head>
-<body>
+<body style="text-align: center">
+
 
 <nav style="margin-bottom: 20px; display: flex; gap: 10px;">
+<p>    Active User:</p>
     {% for name, steamId in friends %}
         <a href="{{ path('steam_index') }}?id={{ steamId }}"
            style="display: inline-block; border: 2px solid {% if steamId == selectedId %}#00b4d8{% else %}transparent{% endif %}; border-radius: 50%; padding: 2px;">
@@ -24,8 +26,12 @@
     <h3>Compare with a friend:</h3>
     {% for name, steamId in friends %}
         {% if steamId != selectedId %}
-            <a href="{{ path('steam_compare', { id1: selectedId, id2: steamId }) }}">
-                <img src="{{ friendAvatars[steamId] }}" alt="{{ name }}" width="64" height="64" title="Compare with {{ name }}">
+            <a  style="margin-left: 30px" href="{{ path('steam_compare', { id1: selectedId, id2: steamId }) }}">
+                {% if name == 'Vanessa' %}
+                    <img src="{{ friendAvatars[steamId] }}" alt="{{ name }}" width="128" height="128" title="Compare with {{ name }}">
+                {% else %}
+                    <img src="{{ friendAvatars[steamId] }}" alt="{{ name }}" width="128" height="128" title="Compare with {{ name }}">
+                {% endif %}
             </a>
         {% endif %}
     {% endfor %}

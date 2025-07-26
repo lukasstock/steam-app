@@ -27,8 +27,7 @@ class DetailPageController extends AbstractController
     #[Route('/steam', name: 'steam_index')]
     public function index(Request $request): Response
     {
-        //TODO average playtime pro spiel
-        //TODO average cock size - live cock hardness tracker
+        //TODO average playtime per game
         $apiKey = $_ENV['STEAM_API_KEY'];
         $selectedId = $request->query->get('id', $_ENV['STEAM_ID']);
 

@@ -3,7 +3,10 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/genre.css') }}">
+
 {% endblock %}
+
+
 
 {% block body %}
 
@@ -15,6 +18,21 @@
 
     <h1>{{ message }}</h1>
 
+    <div class="profile-card">
+        <img class="avatar" src="{{ userProfile.avatar }}" alt="{{ userProfile.name }}'s avatar">
+        <div class="profile-info">
+            <h2>{{ userProfile.name }}</h2>
+            <p><strong>Favorite Game:</strong> {{ userProfile.favoriteGame }}</p>
+            <img class="game-icon" src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ userProfile.favoriteGameId }}/header.jpg" alt="{{ userProfile.favoriteGame }} cover">
+
+            <br><br>
+            <div id="yt-player-container">
+                Clair Obscur: Expedition 33 Simon Bossfight OST (We Lost)
+                <div id="yt-player"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="tag-container">
         {% for tag in topTags %}
             <span class="tag">{{ tag }}</span>
@@ -22,7 +40,11 @@
     </div>
 {% endblock %}
 
+
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/genre.js') }}"></script>
+    <!-- Shit fucking javascript caching -->
+    <script src="{{ asset('js/genre.js') }}?v={{ random() }}"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
 {% endblock %}

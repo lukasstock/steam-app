@@ -56,7 +56,7 @@ class SteamGenreCacheWarmupCommand extends Command
                 $output->writeln("Genres for appId {$appId} already cached.");
             }
 
-            usleep(200000); // 0.2 seconds
+            usleep(500000); // 0.2 seconds
         }
 
         $output->writeln("Cache warmup done.");

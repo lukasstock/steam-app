@@ -39,6 +39,12 @@ class GenreController extends AbstractController
         return $this->render('steam/genre.html.twig', [
             'message' => $message,
             'topTags' => $topTags,
-        ]);
+            'userProfile' => [
+                'name' => $username,
+                'avatar' => 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1940340/07a1c1fe7ad0bb4806a013264d68665c0e8f01a1.gif',
+                'favoriteGame' => 'Clair Obscur: Expedition 33',
+                'favoriteGameId' => '1903340'
+            ],
+            ]);
     }
 }

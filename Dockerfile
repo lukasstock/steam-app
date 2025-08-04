@@ -8,16 +8,13 @@ RUN apt-get update && apt-get install -y \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Copy your custom Apache config to set DocumentRoot and AllowOverride
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 # Copy your Symfony app code
 COPY . /var/www/html/
 
-# Set ownership to www-data
 RUN chown -R www-data:www-data /var/www/html
 
-# Set working directory inside the container
 WORKDIR /var/www/html
 
 # Copy Composer from official image for dependency management if needed

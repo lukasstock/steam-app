@@ -95,7 +95,7 @@ trait SteamApiTrait
         $cacheKey = "steam_app_genres_{$appId}";
 
         return $cache->get($cacheKey, function (ItemInterface $item) use ($appId) {
-            // Cache the result for 1 day (adjust if needed)
+            // Cache the result for 1 day
             $item->expiresAfter(86400); // 60 * 60 * 24
             // Optional: throttle requests to avoid 429 Too Many Requests
             usleep(250_000); // 250ms
